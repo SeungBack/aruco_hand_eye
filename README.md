@@ -36,7 +36,7 @@ each sample.
 <launch>
   <include file="$(find aruco_hand_eye)/launch/aruco_hand_eye.launch">
     <arg name="markerid"   value="582"/>
-    <arg name="markersize" value="0.141"/>
+    <arg name="markersize" value="0.100"/>
     <arg name="publish_tf" value="true"/>
 
     <arg name="marker_parent_frame" value="/base_link"/>
@@ -72,6 +72,40 @@ For calibrating a kinect mounted to the base of a manipulator that can grasp the
 
 ```
 roslaunch aruco_hand_eye kinect.launch ee_frame:=/my/robot/ee_link
+```
+
+## Getting started with Panda and Azure Kinect
+
+1. Prepare aruco marker
+
+```
+wget https://github.com/pal-robotics/aruco_ros/blob/noetic-devel/aruco_ros/etc/marker582_5cm.jpg
+```
+
+2. Launch azure kinect ros driver
+```
+ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=720P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+```
+
+3. Launch azure kinect manager (for fast point cloud visualization)
+```
+roslaunch azure_kinect_manager single_azure_manager.launch
+```
+
+4. Undistort RGB images
+```
+ROS_NAMESPACE=/azure1/r rosrun image_proc image_proc
+```
+
+5. Calibration
+```
+roslaunch aruco_haneye azure.launch
+```
+
+
+6. Publish the result as a static transform
+```
+rosrun tf static_transform_publisher 0.0789678590107 0.0335704876651 0.0635694046549 -0.00440454922104 -0.0160027017029 0.707696882127 0.706321199251 /panda_hand /azure1_camera_base 100
 ```
 
 ## References

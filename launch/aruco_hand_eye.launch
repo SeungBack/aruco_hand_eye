@@ -10,9 +10,10 @@
 
   <!-- The camera topics and frame to use for calibration -->
   <arg name="camera" doc="camera namespace"/>
+  <!-- <arg name="image"                 default="$(arg camera)/image_rect_color"/> -->
   <arg name="image"                 default="$(arg camera)/image_rect_color"/>
   <arg name="camera_info"           default="$(arg camera)/camera_info"/>
-  <arg name="camera_frame"          default="$(arg camera)_optical_frame"/>
+  <arg name="camera_frame"          default="$(arg camera_frame)"/>
   <arg name="marker_frame"          default="/hand_eye/$(arg camera)/aruco_marker_frame"/>
 
   <!-- leave empty and the pose will be published wrt param parent_name -->
