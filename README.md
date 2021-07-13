@@ -105,7 +105,7 @@ roslaunch aruco_haneye azure.launch
 
 6. Publish the result as a static transform
 ```
-rosrun tf static_transform_publisher 0.0789678590107 0.0335704876651 0.0635694046549 -0.00440454922104 -0.0160027017029 0.707696882127 0.706321199251 /panda_hand /azure1_camera_base 100
+rosrun tf static_transform_publisher 0.078997 0.001502 0.066975 0.697583 -0.005156 0.716441 -0.007980 /panda_hand /azure1_camera_base 100
 ```
 
 ## References
